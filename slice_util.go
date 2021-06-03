@@ -1,48 +1,109 @@
 package slice_util
 
-import "reflect"
+import (
+	"fmt"
+)
 
-// General is all type data.
-type General_s []interface{}
-
-// 最後に追加
-func Push(a []General_s, v ...General) []General {
-	var dd General
-	if reflect.TypeOf(a) == reflect.SliceOf(reflect.TypeOf("")) {
-		sd.Data = a.([]string)
+// 最後に要素を追加
+func Push(a interface{}, values ...interface{}) interface{} {
+	var rtn interface{}
+	switch array := a.(type) {
+	case []int:
+		for _, value := range values {
+			if value, ok := value.(int); ok {
+				array = PushInt(array, value)
+			}
+		}
+		rtn = array
+	case []string:
+		for _, value := range values {
+			if value, ok := value.(string); ok {
+				array = PushString(array, value)
+			}
+		}
+		rtn = array
+	default:
+		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	if reflect.TypeOf(a).Kind() == reflect.String {
-		b := a.([]string)
-		w := v.(string)
-		return PushString(b, w)
+	return rtn
+}
+
+// 最後の要素を削除
+func Pop(a interface{}) interface{} {
+	var rtn interface{}
+	switch array := a.(type) {
+	case []int:
+		rtn = PopInt(array)
+	case []string:
+		rtn = PopString(array)
+	default:
+		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	return dd
+	return rtn
 }
 
-// 最後を削除
-func Pop(a []string) []string {
-	return a[:len(a)-1]
+// 最初に要素を追加
+func Unshift(a interface{}, v interface{}) interface{} {
+	var rtn interface{}
+	switch array := a.(type) {
+	case []int:
+		if value, ok := v.(int); ok {
+			rtn = UnshiftInt(array, value)
+		}
+	case []string:
+		if value, ok := v.(string); ok {
+			rtn = UnshiftString(array, value)
+		}
+	default:
+		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
+	}
+	return rtn
 }
 
-// 最初に追加
-func Unshift(a []string, v string) []string {
-	return append([]string{v}, a...)
-}
-
-// 最初を削除
-func Shift(a []string) []string {
-	return a[1:]
+// 最初の要素を削除
+func Shift(a interface{}) interface{} {
+	var rtn interface{}
+	switch array := a.(type) {
+	case []int:
+		rtn = ShiftInt(array)
+	case []string:
+		rtn = ShiftString(array)
+	default:
+		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
+	}
+	return rtn
 }
 
 // 指定位置に追加
-func Insert(a []string, p int, v string) []string {
-	a = append(a, "0")
-	a = append(a[:p+1], a[p:len(a)-1]...)
-	a[p] = v
-	return a
+func Insert(a interface{}, p int, v interface{}) interface{} {
+	var rtn interface{}
+	switch array := a.(type) {
+	case []int:
+		if value, ok := v.(int); ok {
+			array = InsertInt(array, p, value)
+		}
+		rtn = array
+	case []string:
+		if value, ok := v.(string); ok {
+			array = InsertString(array, p, value)
+		}
+		rtn = array
+	default:
+		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
+	}
+	return rtn
 }
 
 // 指定位置を削除
-func Remove(a []string, p int) []string {
-	return append(a[:p], a[p+1:]...)
+func Remove(a interface{}, p int) interface{} {
+	var rtn interface{}
+	switch array := a.(type) {
+	case []int:
+		rtn = RemoveInt(array, p)
+	case []string:
+		rtn = RemoveString(array, p)
+	default:
+		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
+	}
+	return rtn
 }

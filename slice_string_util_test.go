@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-// 最後に追加のテスト
+// 最後に要素を追加のテスト
 func TestPushString(t *testing.T) {
 	a := []string{"10", "20", "30", "40", "50"}
 	a = PushString(a, "1000")
@@ -15,7 +15,7 @@ func TestPushString(t *testing.T) {
 	}
 }
 
-// 最後を削除のテスト
+// 最後の要素を削除のテスト
 func TestPopString(t *testing.T) {
 	a := []string{"10", "20", "30", "40", "50", "1000"}
 	a = PopString(a)
@@ -25,7 +25,7 @@ func TestPopString(t *testing.T) {
 	}
 }
 
-// 最初に追加のテスト
+// 最初に要素を追加のテスト
 func TestUnshiftString(t *testing.T) {
 	a := []string{"10", "20", "30", "40", "50"}
 	a = UnshiftString(a, "1000")
@@ -35,7 +35,7 @@ func TestUnshiftString(t *testing.T) {
 	}
 }
 
-// 最初を削除のテスト
+// 最初の要素を削除のテスト
 func TestShiftString(t *testing.T) {
 	a := []string{"1000", "10", "20", "30", "40", "50"}
 	a = ShiftString(a)
@@ -45,7 +45,7 @@ func TestShiftString(t *testing.T) {
 	}
 }
 
-// 指定位置に追加のテスト
+// 指定位置に要素を追加のテスト
 func TestInsertString(t *testing.T) {
 	a := []string{"10", "20", "30", "40", "50"}
 	a = InsertString(a, 2, "1000")
@@ -55,7 +55,7 @@ func TestInsertString(t *testing.T) {
 	}
 }
 
-// 指定位置を削除のテスト
+// 指定位置の要素を削除のテスト
 func TestRemoveString(t *testing.T) {
 	a := []string{"10", "20", "1000", "30", "40", "50"}
 	a = RemoveString(a, 2)
