@@ -8,8 +8,7 @@ import (
 // 最後に要素(string)を追加のテスト
 func TestPushS(t *testing.T) {
 	var a interface{} = []string{"10", "20", "30", "40", "50"}
-	// a := []string{"10", "20", "30", "40", "50"}
-	a = Push(a, "1000", "2000")
+	Push(&a, "1000", "2000")
 	b := []string{"10", "20", "30", "40", "50", "1000", "2000"}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%s and %s is not equal", a, b)
@@ -19,7 +18,7 @@ func TestPushS(t *testing.T) {
 // 最後に要素(int)追加のテスト
 func TestPushI(t *testing.T) {
 	var a interface{} = []int{10, 20, 30, 40, 50}
-	a = Push(a, 1000)
+	Push(&a, 1000)
 	b := []int{10, 20, 30, 40, 50, 1000}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%d and %d is not equal", a, b)
@@ -29,7 +28,7 @@ func TestPushI(t *testing.T) {
 // 最後の要素(string)を削除のテスト
 func TestPopS(t *testing.T) {
 	var a interface{} = []string{"10", "20", "30", "40", "50", "1000"}
-	a = Pop(a)
+	Pop(&a)
 	b := []string{"10", "20", "30", "40", "50"}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%s and %s is not equal", a, b)
@@ -39,7 +38,7 @@ func TestPopS(t *testing.T) {
 // 最後の要素(int)を削除のテスト
 func TestPopI(t *testing.T) {
 	var a interface{} = []int{10, 20, 30, 40, 50, 1000}
-	a = Pop(a)
+	Pop(&a)
 	b := []int{10, 20, 30, 40, 50}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%d and %d is not equal", a, b)
@@ -49,7 +48,7 @@ func TestPopI(t *testing.T) {
 // 最初に要素(string)を追加のテスト
 func TestUnshiftS(t *testing.T) {
 	var a interface{} = []string{"10", "20", "30", "40", "50"}
-	a = Unshift(a, "1000")
+	Unshift(&a, "1000")
 	b := []string{"1000", "10", "20", "30", "40", "50"}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%s and %s is not equal", a, b)
@@ -59,7 +58,7 @@ func TestUnshiftS(t *testing.T) {
 // 最初に要素(int)を追加のテスト
 func TestUnshiftI(t *testing.T) {
 	var a interface{} = []int{10, 20, 30, 40, 50}
-	a = Unshift(a, 1000)
+	Unshift(&a, 1000)
 	b := []int{1000, 10, 20, 30, 40, 50}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%d and %d is not equal", a, b)
@@ -69,7 +68,7 @@ func TestUnshiftI(t *testing.T) {
 // 最初の要素(string)を削除のテスト
 func TestShiftS(t *testing.T) {
 	var a interface{} = []string{"1000", "10", "20", "30", "40", "50"}
-	a = Shift(a)
+	Shift(&a)
 	b := []string{"10", "20", "30", "40", "50"}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%s and %s is not equal", a, b)
@@ -79,7 +78,7 @@ func TestShiftS(t *testing.T) {
 // 最初の要素(int)を削除のテスト
 func TestShiftI(t *testing.T) {
 	var a interface{} = []int{1000, 10, 20, 30, 40, 50}
-	a = Shift(a)
+	Shift(&a)
 	b := []int{10, 20, 30, 40, 50}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%d and %d is not equal", a, b)
@@ -89,7 +88,7 @@ func TestShiftI(t *testing.T) {
 // 指定位置に要素(string)を追加のテスト
 func TestInsertS(t *testing.T) {
 	var a interface{} = []string{"10", "20", "30", "40", "50"}
-	a = Insert(a, 2, "1000")
+	Insert(&a, 2, "1000")
 	b := []string{"10", "20", "1000", "30", "40", "50"}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%s and %s is not equal", a, b)
@@ -99,7 +98,7 @@ func TestInsertS(t *testing.T) {
 // 指定位置に要素(int)を追加のテスト
 func TestInsertI(t *testing.T) {
 	var a interface{} = []int{10, 20, 30, 40, 50}
-	a = Insert(a, 2, 1000)
+	Insert(&a, 2, 1000)
 	b := []int{10, 20, 1000, 30, 40, 50}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%d and %d is not equal", a, b)
@@ -109,7 +108,7 @@ func TestInsertI(t *testing.T) {
 // 指定位置の要素(string)を削除のテスト
 func TestRemoveS(t *testing.T) {
 	var a interface{} = []string{"10", "20", "1000", "30", "40", "50"}
-	a = Remove(a, 2)
+	Remove(&a, 2)
 	b := []string{"10", "20", "30", "40", "50"}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%s and %s is not equal", a, b)
@@ -119,7 +118,7 @@ func TestRemoveS(t *testing.T) {
 // 指定位置の要素を削除のテスト
 func TestRemoveI(t *testing.T) {
 	var a interface{} = []int{10, 20, 1000, 30, 40, 50}
-	a = Remove(a, 2)
+	Remove(&a, 2)
 	b := []int{10, 20, 30, 40, 50}
 	if !reflect.DeepEqual(a, b) {
 		t.Errorf("%d and %d is not equal", a, b)

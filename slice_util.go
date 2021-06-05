@@ -5,105 +5,120 @@ import (
 )
 
 // 最後に要素を追加
-func Push(a interface{}, values ...interface{}) interface{} {
-	var rtn interface{}
-	switch array := a.(type) {
+func Push(a *interface{}, values ...interface{}) {
+	var i interface{}
+	switch array := (*a).(type) {
 	case []int:
 		for _, value := range values {
 			if value, ok := value.(int); ok {
 				array = PushInt(array, value)
 			}
 		}
-		rtn = array
+		i = interface{}(array)
+		*a = i
 	case []string:
 		for _, value := range values {
 			if value, ok := value.(string); ok {
 				array = PushString(array, value)
 			}
 		}
-		rtn = array
+		i = interface{}(array)
+		*a = i
 	default:
 		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	return rtn
+	// return rtn
 }
 
 // 最後の要素を削除
-func Pop(a interface{}) interface{} {
-	var rtn interface{}
-	switch array := a.(type) {
+func Pop(a *interface{}) {
+	var i interface{}
+	switch array := (*a).(type) {
 	case []int:
-		rtn = PopInt(array)
+		array = PopInt(array)
+		i = interface{}(array)
+		*a = i
 	case []string:
-		rtn = PopString(array)
+		array = PopString(array)
+		i = interface{}(array)
+		*a = i
 	default:
 		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	return rtn
 }
 
 // 最初に要素を追加
-func Unshift(a interface{}, v interface{}) interface{} {
-	var rtn interface{}
-	switch array := a.(type) {
+func Unshift(a *interface{}, v interface{}) {
+	var i interface{}
+	switch array := (*a).(type) {
 	case []int:
 		if value, ok := v.(int); ok {
-			rtn = UnshiftInt(array, value)
+			array = UnshiftInt(array, value)
+			i = interface{}(array)
+			*a = i
 		}
 	case []string:
 		if value, ok := v.(string); ok {
-			rtn = UnshiftString(array, value)
+			array = UnshiftString(array, value)
+			i = interface{}(array)
+			*a = i
 		}
 	default:
 		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	return rtn
 }
 
 // 最初の要素を削除
-func Shift(a interface{}) interface{} {
-	var rtn interface{}
-	switch array := a.(type) {
+func Shift(a *interface{}) {
+	var i interface{}
+	switch array := (*a).(type) {
 	case []int:
-		rtn = ShiftInt(array)
+		array = ShiftInt(array)
+		i = interface{}(array)
+		*a = i
 	case []string:
-		rtn = ShiftString(array)
+		array = ShiftString(array)
+		i = interface{}(array)
+		*a = i
 	default:
 		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	return rtn
 }
 
 // 指定位置に追加
-func Insert(a interface{}, p int, v interface{}) interface{} {
-	var rtn interface{}
-	switch array := a.(type) {
+func Insert(a *interface{}, p int, v interface{}) {
+	var i interface{}
+	switch array := (*a).(type) {
 	case []int:
 		if value, ok := v.(int); ok {
 			array = InsertInt(array, p, value)
+			i = interface{}(array)
+			*a = i
 		}
-		rtn = array
 	case []string:
 		if value, ok := v.(string); ok {
 			array = InsertString(array, p, value)
+			i = interface{}(array)
+			*a = i
 		}
-		rtn = array
 	default:
 		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	return rtn
 }
 
 // 指定位置を削除
-func Remove(a interface{}, p int) interface{} {
-	var rtn interface{}
-	switch array := a.(type) {
+func Remove(a *interface{}, p int) {
+	var i interface{}
+	switch array := (*a).(type) {
 	case []int:
-		rtn = RemoveInt(array, p)
+		array = RemoveInt(array, p)
+		i = interface{}(array)
+		*a = i
 	case []string:
-		rtn = RemoveString(array, p)
+		array = RemoveString(array, p)
+		i = interface{}(array)
+		*a = i
 	default:
 		fmt.Printf("parameter is unknown type. [valueType: %T]\n", a)
 	}
-	return rtn
 }
