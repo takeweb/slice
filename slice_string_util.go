@@ -1,4 +1,4 @@
-package slice_util
+package slice
 
 // 最後に追加
 func PushString(a []string, v ...string) []string {

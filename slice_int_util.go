@@ -1,4 +1,4 @@
-package slice_util
+package slice
 
 // 最後に追加
 func PushInt(a []int, v ...int) []int {
